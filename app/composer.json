@@ -1,5 +1,8 @@
 {
     "require": {
-        "johnpbloch/wordpress": "5.0.1",        
+        "johnpbloch/wordpress": "5.0.1",
+        "wp-cli/wp-cli" : "~0.22"
+    },
+    "scripts" : {
     }
 }

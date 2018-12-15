@@ -5,7 +5,7 @@
  *
  * @package WordPress
  */
-echo php_info();
+php_info();
 
 /**
  * Tells WordPress to load the WordPress theme and output it.

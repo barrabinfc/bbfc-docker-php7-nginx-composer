@@ -40,21 +40,14 @@ RUN pecl install xdebug \
 && echo "xdebug.idekey=\"PHPSTORM\"" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
 && echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-# Install WP-CLI
-## Install wp-cli
+# Install app dir
 RUN set -ex; \
+    chown -R www-data:www-data /var/www; \
 	mkdir -p /var/www/app; \
 	chown -R www-data:www-data /var/www/app;
-
-RUN set -ex; \
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar; \
-    php wp-cli.phar --info; \
-    chmod +x wp-cli.phar; \
-    mv wp-cli.phar /usr/local/bin/wp; \
-    wp --allow-root --version; 
 
 USER www-data
 WORKDIR /var/www/app
 
-#COPY entrypoint.sh /usr/local/bin/
-#ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+COPY entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

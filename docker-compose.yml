@@ -26,12 +26,18 @@ services:
         TIMEZONE: ${TIMEZONE}
     command: php index.php
     volumes:
-      - "${APP_WP_CONTENT}:/var/www/app/wp-content"
+      - "${APP_PATH}:/var/www/app"
     networks:
       - db
       - http
     depends_on: 
       - db
+    environment:
+        WORDPRESS_HOST: ${WORDPRESS_DB_HOST}
+        WORDPRESS_DATABASE: ${WORDPRESS_DB_NAME}
+        WORDPRESS_USER: ${WORDPRESS_DB_USER}
+        WORDPRESS_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+        WORDPRESS_CONFIG_EXTRA: ${CONFIG_EXTRA}  
 
   db:
     image: mysql    
@@ -55,5 +61,7 @@ services:
         - 80:80
       volumes_from:
         - php
+      depends_on:
+        - php    
       volumes:
         - ./logs/nginx/:/var/log/nginx
