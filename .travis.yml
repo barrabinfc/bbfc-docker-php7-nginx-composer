@@ -14,7 +14,6 @@ before_install:
   - docker -v
   # symfony application folder
   - mkdir symfony
-  - cp .env.dist .env
   - cat docker-compose.yml
 
 script:
