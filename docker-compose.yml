@@ -1,36 +1,16 @@
 version: '2'
 
-networks:
-  db:
-  database:
-  http:
-
-volumes:
-  # Full mysql folder (for zip backup)
-  db-data:
-  # Tables prepopulate
-  db-migrations:
-
-  # Php7.2 image
-  php:
-
-  # Wordpress
-  wp-content:
-  wp-uploads:
-
 services:
   php:
     build:
       context: php7-fpm
       args:
         TIMEZONE: ${TIMEZONE}
-    command: php index.php
     volumes:
       - "${APP_PATH}:/var/www/app"
-    networks:
-      - db
-      - http
-    depends_on: 
+    ports:
+        - 9000:9000
+    links:
       - db
     environment:
         WORDPRESS_HOST: ${WORDPRESS_DB_HOST}
@@ -60,6 +40,8 @@ services:
       ports:
         - 80:80
       volumes_from:
+        - php
+      links:
         - php
       depends_on:
         - php    

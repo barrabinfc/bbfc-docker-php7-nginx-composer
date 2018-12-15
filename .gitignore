@@ -1,6 +1,6 @@
 logs
 app/vendor/
-app/wp/
+app/wordpress/
 db-data
 db-migrations
 app/wp-content\uploads
