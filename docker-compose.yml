@@ -27,8 +27,6 @@ services:
     user: mysql
     ports:
       - 3306:3306
-    networks:
-      - database
     environment:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         MYSQL_DATABASE: ${MYSQL_DATABASE}

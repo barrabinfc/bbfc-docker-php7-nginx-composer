@@ -2,8 +2,6 @@
 FROM php:7.1-fpm
 ARG TIMEZONE
 
-MAINTAINER Vitor Calejuri <vitor.cajuleri@gmail.com>
-
 RUN set -ex ; \
     apt-get update; \
     apt-get install -y --no-install-recommends \

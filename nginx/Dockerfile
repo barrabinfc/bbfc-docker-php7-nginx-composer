@@ -1,7 +1,5 @@
 FROM debian:jessie
 
-MAINTAINER Maxence POUTORD <maxence.poutord@gmail.com>
-
 RUN apt-get update && apt-get install -y --no-install-recommends \
     nginx
 
