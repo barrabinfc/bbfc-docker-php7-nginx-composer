@@ -48,4 +48,5 @@ USER www-data
 WORKDIR /var/www/app
 
 COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh;
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
