@@ -1,0 +1,59 @@
+version: '2'
+
+networks:
+  db:
+  database:
+  http:
+
+volumes:
+  # Full mysql folder (for zip backup)
+  db-data:
+  # Tables prepopulate
+  db-migrations:
+
+  # Php7.2 image
+  php:
+
+  # Wordpress
+  wp-content:
+  wp-uploads:
+
+services:
+  php:
+    build:
+      context: php7-fpm
+      args:
+        TIMEZONE: ${TIMEZONE}
+    command: php index.php
+    volumes:
+      - "${APP_WP_CONTENT}:/var/www/app/wp-content"
+    networks:
+      - db
+      - http
+    depends_on: 
+      - db
+
+  db:
+    image: mysql    
+    restart: always
+    volumes:
+      - "./db-data:/var/lib/mysql"
+    user: mysql
+    ports:
+      - 3306:3306
+    networks:
+      - database
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}      
+
+  http:
+      build: nginx
+      ports:
+        - 80:80
+      volumes_from:
+        - php
+      volumes:
+        - ./logs/nginx/:/var/log/nginx

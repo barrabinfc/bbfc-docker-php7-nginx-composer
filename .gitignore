@@ -1,0 +1,11 @@
+logs
+app/vendor/
+app/wp/
+db-data
+db-migrations
+app/wp-content\uploads
+app/wp-content\plugins\akismet
+app/wp-content\plugins\hello
+app/wp-content\plugins\index
+app/wp-content\themes\twentyseventeen
+app/wp-content\themes\twentysixteen
