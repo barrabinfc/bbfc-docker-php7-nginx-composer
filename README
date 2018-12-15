@@ -1,0 +1,7 @@
+Dockerize php apps with composer
+================================
+
+A recipe for a php-fpm7 app with composer, nginx
+and mysql.
+
+Should be able to run at least wordpress, or symphony/laravel.
